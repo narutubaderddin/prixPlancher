@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Calcule{% endblock %}
+{% block body %}
+    <h4 class="page-title">Calcule</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">calculer le prix de l'article</div>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.prixPlancher) }}
+                        {{ form_widget(form.prixPlancher,{'type':'number', 'attr': {'class': 'form-control input-square','id':'squareSelect'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.category) }}
+                        {{ form_widget(form.category,{ 'attr': {'class': 'form-control input-square','id':'squareSelect'} }) }}
+                    </div>
+                </div>
+                <div class="card-action">
+                    {{ form_widget(form.Calculer, {'attr':{'class':'btn btn-success' }}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ path('parameter') }}">Consulter la liste des vendeurs concurrent</a>
+            <p>(Ordonné selon l'état et le prix du produit)</p>
+            {% if finalPrice is defined %}
+                <hr>
+                  <h4>Vous devez positionner l'article au prix de <strong>{{ finalPrice }} €</strong>.</h4>
+                <hr>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

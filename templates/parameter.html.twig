@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block title %}Paraméres{% endblock %}
+{% block body %}
+    <h4 class="page-title">Paraméres</h4>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-tasks">
+            <div class="card-header">
+                <h4 class="card-title">Les états des produits</h4>
+            </div>
+            <div class="card-body ">
+                <div class="table-full-width">
+                    <table class="table">
+                        <tbody>
+                        {% for index,category  in productCategories %}
+                        <tr>
+                            <td>{{ index+1 }} - {{ category.name }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Liste des vendeurs</div>
+                <p>(Ordonné selon l'état et le prix du produit)</p>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Prix de vente</th>
+                        <th scope="col">Vendeur concurrent</th>
+                        <th scope="col">Etat de produit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for index,seller in sellers %}
+                    <tr>
+                        <td>{{index + 1}}</td>
+                        <td>{{ seller.price }} €</td>
+                        <td>{{ seller.name }}</td>
+                        <td>{{ seller.category.name }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
