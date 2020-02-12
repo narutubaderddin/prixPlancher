@@ -55,7 +55,7 @@ class SellerRepository extends ServiceEntityRepository
         $qb = $em->createQueryBuilder();
 
         return $this->createQueryBuilder('s')
-            ->leftJoin('s.category','c')
+            ->leftJoin('s.category', 'c')
             ->where(
                 $qb->expr()->gt('c.code', $code)
             )

@@ -9,13 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
-* @Route("/")
-*/
+ * @Route("/")
+ */
 class indexController extends AbstractController
 {
-
     /**
      * @Route("/",name="index")
      */
@@ -29,23 +27,22 @@ class indexController extends AbstractController
             $form->submit($request->request->get($form->getName()));
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $data = $form->getData();
-                $price  = $data['prixPlancher'];
+                $price = $data['prixPlancher'];
                 $category = $data['category'];
                 $finalPrice = $price;
-                $sellers = $em->getRepository(Seller::class)->findBy(['category'=>$category],['price'=>'ASC']);
+                $sellers = $em->getRepository(Seller::class)->findBy(['category' => $category], ['price' => 'ASC']);
 
-                if(count($sellers)>0){
+                if (count($sellers) > 0) {
                     $minSeller = current($sellers);
-                    if($price < $minSeller->getPrice()) {
-                        $finalPrice = $minSeller->getPrice()-0.01;
+                    if ($price < $minSeller->getPrice()) {
+                        $finalPrice = $minSeller->getPrice() - 0.01;
                     }
-                }else{
+                } else {
                     $sellers = $em->getRepository(Seller::class)->findSellers($category->getCode());
                     $minSeller = current($sellers);
-                    if($price < $minSeller->getPrice()) {
-                        $finalPrice = $minSeller->getPrice()-1;
+                    if ($price < $minSeller->getPrice()) {
+                        $finalPrice = $minSeller->getPrice() - 1;
                     }
                 }
                 $params['finalPrice'] = $finalPrice;
@@ -53,12 +50,11 @@ class indexController extends AbstractController
         }
 
         $productCategories = $em->getRepository(ProductStatus::class)->findAll();
-        $params['form']=$form->createView();
-        $params['productCategories'] =$productCategories;
+        $params['form'] = $form->createView();
+        $params['productCategories'] = $productCategories;
 
         return $this->render('index.html.twig', $params);
     }
-
 
     /**
      * @Route("/parameter",name="parameter")
@@ -67,10 +63,11 @@ class indexController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $productCategories = $em->getRepository(ProductStatus::class)->findAll();
-        $sellers = $em->getRepository(Seller::class)->findBy([],['category'=>'DESC','price'=>'DESC']);
+        $sellers = $em->getRepository(Seller::class)->findBy([], ['category' => 'DESC', 'price' => 'DESC']);
+
         return $this->render('parameter.html.twig', [
             'productCategories' => $productCategories,
-            'sellers' => $sellers
+            'sellers' => $sellers,
         ]);
     }
 }
