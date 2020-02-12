@@ -13,11 +13,15 @@ Requirements
 Installation
 ------------
 ```bash
-$ cd sellermania/
+$ git clone https://github.com/narutubaderddin/prixPlancher.git
+$ cd prixPlancher/
 $ composer install
 ```
 Initialisation de la base de données
 ------------
+`composer reset-db`     
+*  Cette commande permer de creer/vider la base de données.       
+
 `php bin/console doctrine:fixtures:load`
 * Cette commande permet d'inialiser la liste des 5 états de produits
  possible.  
