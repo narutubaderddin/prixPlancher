@@ -39,10 +39,13 @@ Usage
 Il n'est pas nécessaire de configurer quoi que ce soit pour exécuter l'application. Exécutez simplement cette commande pour exécuter le serveur Web intégré et accéder à l'application dans votre navigateur à l'adresse <http://localhost:8000>:
 
 ```bash
-$ symfony server:run
+$ symfony server:start
 ```
 Vous pouvez également [configurer un serveur Web complet][2] comme Nginx ou Apache pour exécuter l'application.
 
+Demo
+------------
+<https://www.loom.com/share/faa3ece7a3cf4c3d8c1c3194574d57a4>
 
 [1]: https://symfony.com/doc/current/reference/requirements.html
 [2]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
